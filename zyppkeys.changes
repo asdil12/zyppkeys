@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Feb  7 12:45:16 UTC 2023 - Dominik Heidler <dheidler@suse.de>
+
+- Version 0.3.0
+- Generate version info with bin name
+
+-------------------------------------------------------------------
 Tue Feb  7 11:40:21 UTC 2023 - Dominik Heidler <dheidler@suse.de>
 
 - Version 0.2.0
