@@ -9,7 +9,7 @@ from zyppkeys import *
 from zyppkeys.version import __version__
 
 cli = argparse.ArgumentParser()
-cli.add_argument('-v', '--version', action='version', version=('zyppkeys version ' +  __version__))
+cli.add_argument('-v', '--version', action='version', version=(f"{os.path.basename(sys.argv[0])} version {__version__}"))
 subparsers = cli.add_subparsers(dest="subcommand")
 
 def argument(*name_or_flags, **kwargs):
