@@ -6,6 +6,7 @@ import requests
 import threading
 import queue
 import os
+import sys
 import configparser
 import re
 import datetime
@@ -14,12 +15,18 @@ import pytz
 REPO_DIR = "/etc/zypp/repos.d/"
 
 keys_download_queue = queue.Queue()
+tplock = threading.Lock()
 
 def key_download_queue_handler():
 	while True:
 		key_url, key_list = keys_download_queue.get()
-		pem = requests.get(key_url).text
-		key_list.extend(RPMKey.keys_from_pem(pem))
+		try:
+			pem = requests.get(key_url).text
+			key_list.extend(RPMKey.keys_from_pem(pem))
+		except Exception as e:
+			tplock.acquire()
+			print(f"Error fetching {key_url!r}: {e}", file=sys.stderr)
+			tplock.release()
 		keys_download_queue.task_done()
 for i in range(15):
 	threading.Thread(target=key_download_queue_handler, daemon=True).start()
