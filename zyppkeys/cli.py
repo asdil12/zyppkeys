@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+from textwrap import dedent
 
 import requests
 
@@ -8,7 +9,12 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/.'))
 from zyppkeys import *
 from zyppkeys.version import __version__
 
-cli = argparse.ArgumentParser()
+cli = argparse.ArgumentParser(
+	description="Management of RPM signing keys",
+	epilog=dedent("""
+		The -h option can be used on subcommands as well
+		to show the available option flags.
+	"""))
 cli.add_argument('-v', '--version', action='version', version=(f"{os.path.basename(sys.argv[0])} version {__version__}"))
 subparsers = cli.add_subparsers(dest="subcommand")
 
@@ -39,8 +45,6 @@ def subcommand(name, args=[], parent=subparsers):
 		parser.set_defaults(func=func)
 	return decorator
 
-
-#show_key(list(RPMKey.keys_from_rpmdb())[-2])
 
 @subcommand("list", [])
 def cmd_list(args):
@@ -79,7 +83,7 @@ def cmd_repokeys(args):
 	argument("-p", "--pem", action="store_true", help="Show key PEM"),
 	argument("kid", help="Key id")
 ])
-def cmd_list(args):
+def cmd_show(args):
 	"""Show RPM key details"""
 	keys = [k for k in RPMKey.keys_from_rpmdb() if k.kid == args.kid]
 	if keys:
