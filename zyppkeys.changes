@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Thu Dec  5 14:53:22 UTC 2024 - Dominik Heidler <dheidler@suse.de>
+
+- Version 0.4.0
+- Switch to setuptools
+- Show key help and list keys when called without args
+- Add some more documentation via argparse
+- Handle http errors when downloading keys
+- Add readme examples
+
+-------------------------------------------------------------------
 Tue Feb  7 12:45:16 UTC 2023 - Dominik Heidler <dheidler@suse.de>
 
 - Version 0.3.0
