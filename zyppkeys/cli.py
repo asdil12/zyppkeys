@@ -138,5 +138,7 @@ def entry():
 	args = cli.parse_args()
 	if args.subcommand is None:
 		cli.print_help()
+		print()
+		list_keys(RPMKey.keys_from_rpmdb())
 	else:
 		args.func(args)
