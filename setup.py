@@ -12,7 +12,7 @@ setup(
     description='Manage RPM keys',
     author='Dominik Heidler',
     author_email='dheidler@suse.de',
-    install_requires=['requests'],
+    install_requires=['requests', 'pytz'],
     packages=['zyppkeys'],
     scripts=['bin/zyppkeys'],
 )
