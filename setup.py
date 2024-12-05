@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from distutils.core import setup
+from setuptools import setup
 import os
 
 # Load __version__ from zyppkeys/version.py
@@ -12,7 +12,7 @@ setup(
     description='Manage RPM keys',
     author='Dominik Heidler',
     author_email='dheidler@suse.de',
-    requires=['requests'],
+    install_requires=['requests'],
     packages=['zyppkeys'],
     scripts=['bin/zyppkeys'],
 )
