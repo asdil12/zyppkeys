@@ -16,15 +16,15 @@ gh release create "v${version}"  --generate-notes
 read -p "Update RPM? "
 cd ~/devel/obs/zypp:plugins/zypper-keys-plugin
 osc up
-sed -i -e "s/^\(Version: *\)[^ ]*$/\1${version}/" zypper-keys.spec
+sed -i -e "s/^\(Version: *\)[^ ]*$/\1${version}/" zypper-keys-plugin.spec
 osc vc -m "Version ${version}\n${changes}"
-vi zypper-keys.changes
-osc rm zyppkeys-*.tar.gz
-osc service dr
+vi zypper-keys-plugin.changes
+osc rm -f zyppkeys-*.tar.gz
+osc service mr download_files
 osc add zyppkeys-*.tar.gz
 osc st
-osc diff|bat
+osc diff
 
 read -p "Submit RPM? "
 osc ci
-#osc sr
+osc sr
