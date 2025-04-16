@@ -1,5 +1,8 @@
 # zypper-keys
 
+> [!WARNING]
+> Moved to https://codeberg.org/asdil12/zyppkeys
+
 This tool allows managing RPM keys.
 
 ```
